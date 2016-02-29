@@ -26,9 +26,23 @@ public class Assign4Driver
   	 			
   	  		for (String s = reader.readLine(); s != null; s = reader.readLine()) 
   	  		{
-  	  		System.out.println(s);	
-  	  		//Doit(s);//This will undergo parsing of the string and advance to calling functions when necessary
+  	  		String firstWord = Reader.GetWord(s, 0);
+  	  		if (firstWord.equals(null) || firstWord.equals("") || firstWord.length() != 5){
+  	  			//TODO Check if real word
+  	  			System.out.println("Bad First Word");
+  	  			System.exit(-1);
   	  		}
+  	  		String secondWord = Reader.GetWord(s, 1);
+  	  		if (secondWord.equals(null) || secondWord.equals("") || secondWord.length() != 5){
+  	  			//TODO check if real word
+	  			System.out.println("Bad Second Word");
+	  			System.exit(-1);
+	  		}
+  	  		
+  	  		System.out.println(firstWord + "*" + secondWord);
+  	  		//Doit(s);//This should do something
+  	  		}
+  	  		
   	  	} 
   	  	catch (FileNotFoundException e) 
   	  	{
