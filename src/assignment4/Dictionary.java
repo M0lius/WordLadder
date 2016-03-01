@@ -1,4 +1,10 @@
 package assignment4;
+import java.io.BufferedReader;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 public class Dictionary {
 
@@ -6,22 +12,24 @@ public class Dictionary {
 		// TODO Auto-generated constructor stub
 	}
 	
-	public void Init(filename) {
+	public void Init(String filename) {
 		
-		Dictionary dictionary = new Arraylist[String];
+		ArrayList<Word> dictionary = new ArrayList<Word>();
 		
 		try 
 		{
 			FileReader freader = new FileReader(filename);
 			BufferedReader reader = new BufferedReader(freader);
 			
-			i = 0;
-			for (String s = reader.readLine(); s != null; s = reader.readLine()) 
+			int i = 0;
+			for (String s = reader.readLine(); s != null; s = reader.readLine())
 			{
+				Word input = new Word();
 				if (s.charAt(0) != '*'){
-					for (j = 0; j < 5; j++) {
-						Arraylist[i] += s.charAt(j);
+					for (int j = 0; j < 5; j++) {
+						input.addChar(input, s.charAt(j));
 					}
+					dictionary.add(input);
 					i++;
 				}
 			}
@@ -37,7 +45,6 @@ public class Dictionary {
 			e.printStackTrace();
 			System.exit(-1);
 		}
-		String word = new string();
 	}
 
 }
