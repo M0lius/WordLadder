@@ -26,21 +26,31 @@ public class Assign4Driver
   	 			
   	  		for (String s = reader.readLine(); s != null; s = reader.readLine()) 
   	  		{
+  	  		
+  	  		Dictionary dictionary = new Dictionary();
+  	  		WordLadderSolver wordLadder = new WordLadderSolver(); //my word ladder
+  	  		boolean invalid = false; //checks if words are both valid before making a ladder
+  	  		
   	  		String firstWord = Reader.GetWord(s, 0);
-  	  		if (firstWord.equals(null) || firstWord.equals("") || firstWord.length() != 5){
+  	  		if (firstWord.equals(null) || firstWord.equals("") || firstWord.length() != 5 
+  	  				|| !dictionary.WordExists(firstWord)){
   	  			//TODO Check if real word
-  	  			System.out.println("Bad First Word");
-  	  			System.exit(-1);
+  	  			System.out.println("Invalid First Word");
+  	  			invalid = true;
   	  		}
   	  		String secondWord = Reader.GetWord(s, 1);
-  	  		if (secondWord.equals(null) || secondWord.equals("") || secondWord.length() != 5){
+  	  		if (secondWord.equals(null) || secondWord.equals("") || secondWord.length() != 5
+  	  				|| !dictionary.WordExists(secondWord)){
   	  			//TODO check if real word
-	  			System.out.println("Bad Second Word");
-	  			System.exit(-1);
+  	  			if (invalid == false){System.out.println("Invalid Second Word");} //dont give out two errors
+	  			invalid = true;
 	  		}
   	  		
-  	  		System.out.println(firstWord + "*" + secondWord);
-  	  		//Doit(s);//This should do something
+  	  		if(!invalid){
+  	  			wordLadder.MakeLadder(firstWord, secondWord, 0);
+  	  		}
+  	  		wordLadder.PrintSolution();
+  	  		
   	  		}
   	  		
   	  	} 

@@ -7,18 +7,48 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Dictionary {
+	
+	ArrayList<Word> dictionary;
 
 	public Dictionary() {
-		// TODO Auto-generated constructor stub
+		Init();
 	}
 	
-	public void Init(String filename) {
+	//very stupid simple check if exists method
+	public boolean WordExists(String word){
+		for(int i = 0; i <dictionary.size(); i++){
+			if(dictionary.get(i).getEntry().equalsIgnoreCase(word)){
+				return true;
+			}
+		}
+		return false;
+	}
+	
+	public boolean WordVisited(String word){
+		for(int i = 0; i <dictionary.size(); i++){
+			if(dictionary.get(i).getEntry().equalsIgnoreCase(word)){
+				return dictionary.get(i).getVisited();
+			}
+		}
+		return true; //doesnt even exist so act as if visited
+	}
+	
+	public void MarkVisited(String word){
+		for(int i = 0; i <dictionary.size(); i++){
+			if(dictionary.get(i).getEntry().equalsIgnoreCase(word)){
+				dictionary.get(i).setVisited(true);
+				return;
+			}
+		}
+	}
+	
+	public void Init() {
 		
-		ArrayList<Word> dictionary = new ArrayList<Word>();
+		dictionary = new ArrayList<Word>();
 		
 		try 
 		{
-			FileReader freader = new FileReader(filename);
+			FileReader freader = new FileReader("A4words.dat");
 			BufferedReader reader = new BufferedReader(freader);
 			
 			int i = 0;
@@ -30,6 +60,7 @@ public class Dictionary {
 						input.addChar(input, s.charAt(j));
 					}
 					dictionary.add(input);
+					//System.out.println(input.getEntry());
 					i++;
 				}
 			}
