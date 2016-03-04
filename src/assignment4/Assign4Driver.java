@@ -46,14 +46,19 @@ public class Assign4Driver
 	  			invalid = true;
 	  		}
   	  		
-  	  		if(!invalid){
-  	  			wordLadder.MakeLadder(firstWord, secondWord, 0);
-  	  		}
-  	  		wordLadder.PrintSolution();
+  	  		try {
+				List<String> ladder = wordLadder.computeLadder(firstWord, secondWord); //get word ladder
+				for(int i = 0; i < ladder.size()  ; i++){
+  	  				System.out.println(ladder.get(i)); //output one word per line
+  	  			}
+  	  				System.out.println("**********"); //seperate ladders
+			} catch (NoSuchLadderException e) {
+				System.err.println("No Wordladder Possible For " + firstWord + " And " + secondWord + "."); //no ladder found
+				System.err.println("**********"); //seperate from next ladder
+			}  	  			
   	  		
-  	  		}
-  	  		
-  	  	} 
+  	  	}
+  	  } 
   	  	catch (FileNotFoundException e) 
   	  	{
   	  		System.err.println ("Error: File not found. Exiting...");

@@ -27,6 +27,7 @@ myName = String.valueOf(myNameChars);
 	
 	public boolean MakeLadder (String fromWord, String toWord, int index){
 		solutionList.addElement(fromWord);
+		dictionary.MarkVisited(fromWord);
 		
 		if(fromWord.equalsIgnoreCase(toWord)){return true;}		
 		
@@ -37,7 +38,6 @@ myName = String.valueOf(myNameChars);
 				char[] check = fromWord.toCharArray();
 				check[i] = toWord.charAt(i);
 				if(dictionary.WordExists(String.valueOf(check)) && !dictionary.WordVisited(String.valueOf(check))){
-					dictionary.MarkVisited(String.valueOf(check));
 					if (MakeLadder(String.valueOf(check), toWord, i + 1)){
 						return true;
 					}
@@ -53,7 +53,6 @@ myName = String.valueOf(myNameChars);
 					char[] check = fromWord.toCharArray();
 					check[i] = alph[j];
 					if(dictionary.WordExists(String.valueOf(check))&& !dictionary.WordVisited(String.valueOf(check))){
-						dictionary.MarkVisited(String.valueOf(check));
 						if (MakeLadder(String.valueOf(check), toWord, i + 1)){
 							return true;
 						}
@@ -66,12 +65,9 @@ myName = String.valueOf(myNameChars);
 		return false;
 	}
 	
-	public void PrintSolution (){
-		for(int i = 0; i < solutionList.size(); i++){
-			System.out.println(solutionList.elementAt(i));
-		}
-		System.out.println("**********");
-	}
+//	public void PrintSolution (Vector<String> solution){
+//		
+//	}
 
     // add a constructor for this object. HINT: it would be a good idea to set up the dictionary there
 
@@ -81,12 +77,16 @@ myName = String.valueOf(myNameChars);
     public List<String> computeLadder(String startWord, String endWord) throws NoSuchLadderException 
     {
         // implement this method
-        throw new UnsupportedOperationException("Not implemented yet!");
+    	if (!MakeLadder (startWord, endWord, 0)){
+    		 throw new NoSuchLadderException("No Word Ladder Possible");
+    	}
+		return solutionList;
     }
 
     @Override
     public boolean validateResult(String startWord, String endWord, List<String> wordLadder) 
     {
+    	
         throw new UnsupportedOperationException("Not implemented yet!");
     }
 
