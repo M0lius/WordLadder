@@ -59,16 +59,20 @@ public class Assign4Driver
   	  		if (secondWord.equals(null) || secondWord.equals("") || secondWord.length() != 5
   	  				|| !dictionary.WordExists(secondWord)){
   	  			//TODO check if real word
-  	  			if (invalid == false){System.out.println("Invalid Second Word");} //dont give out two errors
-	  			invalid = true;
+  	  			if (invalid == false){//dont give out two errors
+  	  				System.out.println("Invalid Second Word");
+  	  				invalid = true;
+  	  			} 
 	  		}
   	  		
   	  		try {
-				List<String> ladder = wordLadder.computeLadder(firstWord, secondWord); //get word ladder
-				for(int i = 0; i < ladder.size()  ; i++){
-  	  				System.out.println(ladder.get(i)); //output one word per line
+  	  			if(!invalid){
+					List<String> ladder = wordLadder.computeLadder(firstWord, secondWord); //get word ladder
+					for(int i = 0; i < ladder.size()  ; i++){
+	  	  				System.out.println(ladder.get(i)); //output one word per line
+	  	  			}
+	  	  				System.out.println("**********"); //seperate ladders
   	  			}
-  	  				System.out.println("**********"); //seperate ladders
 			} catch (NoSuchLadderException e) {
 				System.err.println("No Wordladder Possible For " + firstWord + " And " + secondWord + "."); //no ladder found
 				System.err.println("**********"); //seperate from next ladder
