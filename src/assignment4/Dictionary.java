@@ -42,6 +42,13 @@ public class Dictionary {
 		}
 	}
 	
+	public String getWord(int i){
+		return dictionary.get(i).getEntry();
+	}
+	public int getSize(){
+		return dictionary.size();
+	}
+	
 	public void Init() {
 		
 		dictionary = new ArrayList<Word>();

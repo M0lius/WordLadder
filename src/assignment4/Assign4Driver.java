@@ -9,6 +9,9 @@
 //
 //TA::: Jo Egner
 //Discussion Time: 9:30 AM -> 11:00 AM
+//
+//Prints out total time to get all word ladders at the end 
+ 
 
 package assignment4;
 
@@ -32,14 +35,16 @@ public class Assign4Driver
   	  	}
   		  
   		 try 
-  		{
+  		{ 			 
   			FileReader freader = new FileReader(args[0]);
   			BufferedReader reader = new BufferedReader(freader);
   	 			
+  			long startTime = System.currentTimeMillis(); //startTime for program
+  			
   	  		for (String s = reader.readLine(); s != null; s = reader.readLine()) 
   	  		{
   	  		
-  	  		Dictionary dictionary = new Dictionary();
+  	  		Dictionary dictionary = new Dictionary(); //hold the english words to verify input
   	  		WordLadderSolver wordLadder = new WordLadderSolver(); //my word ladder
   	  		boolean invalid = false; //checks if words are both valid before making a ladder
   	  		
@@ -69,7 +74,12 @@ public class Assign4Driver
 				System.err.println("**********"); //seperate from next ladder
 			}  	  			
   	  		
-  	  	}
+  	  	} //end of for loop
+  	  		
+  	  	long totalTime = System.currentTimeMillis() - startTime;//total time of program to run
+  	  	double seconds = (double) totalTime/1000; //total time in seconds
+		System.out.printf("Total time = %g sec", seconds);	
+  	  		
   	  } 
   	  	catch (FileNotFoundException e) 
   	  	{
@@ -82,5 +92,6 @@ public class Assign4Driver
   	  		e.printStackTrace();
   	  		System.exit(-1);
   	  	}
+  		 
     }
 }

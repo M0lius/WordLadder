@@ -25,7 +25,7 @@ myNameChars[4] = 'x';
 myName = String.valueOf(myNameChars);
  */
 	
-	public boolean MakeLadder (String fromWord, String toWord, int index){
+	public boolean makeLadder (String fromWord, String toWord, int index){
 		solutionList.addElement(fromWord);
 		dictionary.MarkVisited(fromWord);
 		
@@ -38,7 +38,7 @@ myName = String.valueOf(myNameChars);
 				char[] check = fromWord.toCharArray();
 				check[i] = toWord.charAt(i);
 				if(dictionary.WordExists(String.valueOf(check)) && !dictionary.WordVisited(String.valueOf(check))){
-					if (MakeLadder(String.valueOf(check), toWord, i + 1)){
+					if (makeLadder(String.valueOf(check), toWord, i + 1)){
 						return true;
 					}
 				}
@@ -53,7 +53,7 @@ myName = String.valueOf(myNameChars);
 					char[] check = fromWord.toCharArray();
 					check[i] = alph[j];
 					if(dictionary.WordExists(String.valueOf(check))&& !dictionary.WordVisited(String.valueOf(check))){
-						if (MakeLadder(String.valueOf(check), toWord, i + 1)){
+						if (makeLadder(String.valueOf(check), toWord, i + 1)){
 							return true;
 						}
 					}
@@ -77,7 +77,7 @@ myName = String.valueOf(myNameChars);
     public List<String> computeLadder(String startWord, String endWord) throws NoSuchLadderException 
     {
         // implement this method
-    	if (!MakeLadder (startWord, endWord, 0)){
+    	if (!makeLadder (startWord, endWord, 0)){
     		 throw new NoSuchLadderException("No Word Ladder Possible");
     	}
 		return solutionList;
